@@ -9,8 +9,8 @@ import Lnk from './../imports/ui/Lnk';
 import Login from '../imports/ui/Login';
 import NotFound from '../imports/ui/NotFound';
 
-
 const browserHistory = createHistory();
+window.browserHistory = browserHistory;
 const routes = (
   <Router history={browserHistory}>
     <Switch>

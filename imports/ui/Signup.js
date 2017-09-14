@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Signup extends React.Component{
     render(){
       return(
-        <h3>Hola JuanCamilo, te hablo desde Signup Component. Como Vas?</h3>
+        <div>
+          <h1>Unete a Short Link App</h1>
+          <Link to='/'>Ya tienes una cuenta?</Link>
+        </div>
       );
     }
   };
