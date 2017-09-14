@@ -5,23 +5,26 @@ export default class Signup extends React.Component{
     constructor(props){
       super(props);
       this.state = {
-        count: this.props.count || 0 //Asi se puede dar un valor por defecto (0) o pasarle el state a travez de props.
+        count: ''
       };
     }
-    addOne(){ // Asi se escriben metodos completos, abajo en el boton se ve como se crean en el mismo boton.
+    onSubmit(e){
+      e.preventDefault(); 
+
       this.setState({
-        count: this.state.count + 1
+        error: 'Algo salío mal.'
       });
     }
     render(){
       return(
         <div>
           <h1>Unete a Short Link App</h1>
-          <p>{this.state.count}</p>
-          <button onClick={() => {
-            this.setState({ count: this.state.count - 1 })
-          }}>-1</button> {/*Asi se escriben metodos en linea*/}
-          <button onClick={this.addOne.bind(this)}>+1</button>
+          {this.state.error ? <p>{this.state.error}</p> : undefined }
+          <form>
+            <input type='email' name='email' placeholder='Email'/>
+            <input type='password' name='password' placeholder='Password'/>
+            <button onClick={this.onSubmit.bind(this)}>Crear Cuenta</button>
+          </form>
           <Link to='/'>Ya tienes una cuenta?</Link>
         </div>
       );
