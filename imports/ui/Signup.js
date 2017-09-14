@@ -23,6 +23,10 @@ export default class Signup extends React.Component{
       let email = this.refs.email.value.trim();
       let password = this.refs.password.value.trim();
 
+      if( password.length < 9 ) {
+        return this.setState({ error: 'La contraseña debe tener mas de 8 caracteres.'});
+      }
+
       Accounts.createUser({ email: email, password: password }, (err) => {   // lo mismo que solo escribir {email, password} por ES6.
         if (err) {
           this.setState({ error: err.reason });
@@ -36,10 +40,10 @@ export default class Signup extends React.Component{
         <div>
           <h1>Unete a Short Link App</h1>
           { this.state.error ? <p>{this.state.error}</p> : undefined }  {/*Se muestra el error solo si existe*/}
-          <form>
+          <form onSubmit={this.onSubmit.bind(this)} noValidate>
             <input type='email' ref='email' name='email' placeholder='Email'/>
             <input type='password' ref='password' name='password' placeholder='Password'/>
-            <button onClick={this.onSubmit.bind(this)}>Crear Cuenta</button>
+            <button>Crear Cuenta</button>
           </form>
           <Link to='/'>Ya tienes una cuenta?</Link>
         </div>

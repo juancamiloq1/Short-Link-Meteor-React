@@ -37,10 +37,10 @@ export default class Login extends React.Component{
       <div>
         <h1>Short Link App</h1>
         { this.state.error ? <p>{this.state.error}</p> : undefined }  {/*Se muestra el error solo si existe*/}
-        <form>
+        <form onSubmit={this.onSubmit.bind(this)} noValidate>
           <input type='email' ref='email' name='email' placeholder='Email'/>
           <input type='password' ref='password' name='password' placeholder='Password'/>
-          <button onClick={this.onSubmit.bind(this)}>Iniciar Sesión</button>
+          <button>Iniciar Sesión</button>
         </form>
         <Link to='/signup'>Tienes una cuenta?</Link>
       </div>
