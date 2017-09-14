@@ -10,6 +10,13 @@ export default class Login extends React.Component{
       error: ''
     };
   }
+  
+  componentWillMount() {
+    if ( Meteor.userId() ) {
+        this.props.browserHistory.replace('/links');
+    }
+  }
+
   onSubmit(e){
     e.preventDefault(); 
 
@@ -17,7 +24,11 @@ export default class Login extends React.Component{
     let password = this.refs.password.value.trim();
     
     Meteor.loginWithPassword({email: email}, password, (err) => {
-      console.log('Login Callback', err);
+      if (err) {
+        this.setState({ error: 'No fue posible iniciar sesión.' });
+      } else {
+        this.setState({ error: '' });
+      }
     });
 
   }

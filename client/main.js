@@ -15,6 +15,7 @@ window.browserHistory = browserHistory;
 
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/links'];
+
 const routes = (
   <Router history={browserHistory}>
     <Switch>
@@ -34,11 +35,11 @@ Tracker.autorun( () => {
   console.log('Is Authenticated', isAuthenticated);
 
   if( isUnauthenticatedPages && isAuthenticated ) {
-    browserHistory.push('/links');
     //redirecto links
+    browserHistory.replace('/links');
   } else if ( isAuthenticatedPages && !isAuthenticated ) {
     // redirect to /
-    browserHistory.push('/');
+    browserHistory.replace('/');
   }
 });
 

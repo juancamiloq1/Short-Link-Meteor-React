@@ -1,21 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
 
 export default class Signup extends React.Component{
     constructor(props){
       super(props);
       this.state = {
-        count: ''
+        error: ''
       };
     }
+
+    componentWillMount() {
+      if ( Meteor.userId() ) {
+          this.props.browserHistory.replace('/links');
+      }
+    }
+
     onSubmit(e){
       e.preventDefault(); 
 
       let email = this.refs.email.value.trim();
       let password = this.refs.password.value.trim();
-      Accounts.createUser({ email: email, password: password}, (err) => {   // lo mismo que solo escribir {email, password} por ES6.
-        console.log('Crear Cuenta callback', err);
+
+      Accounts.createUser({ email: email, password: password }, (err) => {   // lo mismo que solo escribir {email, password} por ES6.
+        if (err) {
+          this.setState({ error: err.reason });
+        } else {
+          this.setState({ error: '' });
+        }
       });
     }
     render(){
