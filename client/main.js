@@ -12,5 +12,11 @@ Tracker.autorun( () => {
 
 
 Meteor.startup( () => {
+  Meteor.call('greetUser', 'Juanca', (err, res) => {
+    console.log('Greet User Arguments', err, res);
+  });
+  Meteor.call('addNumbers', 4, 4, (err, res) => {
+    console.log('Add Numbers Arguments', err, res);
+  });
   ReactDOM.render(routes, document.getElementById('app'));
 });
