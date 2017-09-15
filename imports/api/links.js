@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-
+import SimpleSchema from 'simpl-schema';
 
 export const Links = new Mongo.Collection('links');
 
@@ -13,13 +13,20 @@ if( Meteor.isServer ) {
 
 Meteor.methods({
    'links.insert'( url ) {
-       if ( !this.userId ) {
-           throw new Meteor.Error( 'No autorizado');
-       }
+        if ( !this.userId ) {
+            throw new Meteor.Error( 'no-autorizado' );
+        }
+        new SimpleSchema({
+            url: {
+                type: String,
+                label: 'Your link',
+                regEx: SimpleSchema.RegEx.Url
+            }
+        }).validate({ url: url });
 
-       Links.insert({
-           url: url,
-           userId: this.userId
-       });
+        Links.insert({
+            url: url,
+            userId: this.userId
+        });
    }
 });
