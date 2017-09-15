@@ -12,19 +12,14 @@ if( Meteor.isServer ) {
 
 
 Meteor.methods({
-    // Ejemplos Methods
-    greetUser(name) {
-        console.log('greetUser esta corriendo...');
+   'links.insert'( url ) {
+       if ( !this.userId ) {
+           throw new Meteor.Error( 'No autorizado');
+       }
 
-        if(!name){
-            throw new Meteor.Error('invalid-arguments', 'Name is Undefined');
-        }
-        return `Hello User! ${name}`;
-    },
-    addNumbers( x, y ){
-        if( typeof x !== 'number' || typeof y !== 'number' ){
-            throw new Meteor.Error('argumentos-invalidos', 'Deben ser los dos numeros');
-        }
-        return x + y;
-    }
+       Links.insert({
+           url: url,
+           userId: this.userId
+       });
+   }
 });
