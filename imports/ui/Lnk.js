@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import PrivateHeader from './PrivateHeader';
 import LinksList from './LinksList';
 import AddLink from './AddLink';
-
+import LinksListFilters from './LinksListFilters';
 
 export default class Lnk extends React.Component{
     componentWillMount() {
@@ -16,6 +16,7 @@ export default class Lnk extends React.Component{
         return (
             <div>
                 <PrivateHeader title='Tus Links'/>
+                <LinksListFilters/>
                 <LinksList />
                 <AddLink />
             </div>
