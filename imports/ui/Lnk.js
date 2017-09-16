@@ -15,7 +15,7 @@ export default class Lnk extends React.Component{
     render() {
         return (
             <div>
-                <PrivateHeader title='Your Links'/>
+                <PrivateHeader title='Tus Links'/>
                 <LinksList />
                 <AddLink />
             </div>
