@@ -1,11 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import { WebApp } from 'meteor/webapp';
+import moment from 'moment';
 
 import '../imports/api/users';   //Solo necesitamos que se ejecute (Validacion de users)
 import { Links } from '../imports/api/links';
 import '../imports/startup/simple-schema-config';
 
 Meteor.startup(() => {
+  let now = new Date().getTime();
+  console.log(now);
+
+  let momentNow = moment(0);
+  console.log(momentNow.fromNow());
+
   WebApp.connectHandlers.use( (req, res, next) => {
     const _id = req.url.slice(1);
     const link = Links.findOne({ _id: _id });
