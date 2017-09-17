@@ -46,7 +46,7 @@ export default class Signup extends React.Component{
               <input type='password' ref='password' name='password' placeholder='Password'/>
               <button className='button'>Crear Cuenta</button>
             </form>
-            <Link to='/'>Ya tienes una cuenta?</Link>
+            <Link to='/'>Tienes una cuenta?</Link>
           </div>
         </div>
       );
