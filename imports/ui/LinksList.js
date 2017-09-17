@@ -27,19 +27,27 @@ export default class LinksList extends React.Component{
     }
     renderLinksListItems() {
         if (Links.lenght === 0){
-            return <h3>Añade un Link para comenzar</h3>;
+            return (
+                <div className='item'>
+                    <p className='item__status-message'>Añade un Link para comenzar</p>
+                </div>
+            );
+        } else if ( this.state.links.length === 0 ) {
+            return (
+                <div className='item'>
+                    <p className='item__status-message'>No se encontraron links.</p>
+                </div>
+            );
         } else {
             return this.state.links.map( (link) => {
                 const shortUrl = Meteor.absoluteUrl(link._id);
                 return <LinksListItem key={link._id} shortUrl={shortUrl} {...link}/>
-               // return <p key={link._id}>{link.url}</p>;
             });
         }
     }
     render() {
         return (
             <div>
-                <p>Links List</p>
                 <div>
                     {this.renderLinksListItems()}
                 </div>
